@@ -53,13 +53,6 @@ public:
 	*/
 	virtual void parseResponse(CBHelperResponseInfo resp) { return; };
 
-	/**
-	 * This method is called once a file has been downloaded using the cloudbase.io file id.
-	 * The CBHelperAttachment object will only contain the MAHandle data handle pointing to the downloaded file data
-	 * @param fileData The CBHelperAttachment containing the MAHandle data handle.
-	 */
-	virtual void fileDownloaded(CBHelperAttachment fileData) { return; };
-
 	virtual ~CBHelperResponder(void) {}
 };
 

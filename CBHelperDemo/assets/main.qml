@@ -36,18 +36,18 @@ TabbedPane {
                     id: appCodeField
                     hintText: "Application code"
                     topMargin: 30.0
-                    text: "mosync-test"
+                    text: ""
                 }
                 TextField {
                     id: appSecretField
                     hintText: "Application unique code"
-                    text: "d2b4e02ab1e415babb45ffa379da25ea"
+                    text: ""
                 }
                 TextField {
                     id: appPwdField
                     hintText: "Application password"
                     inputMode: TextFieldInputMode.Password
-                    text: "m1i2n3e4"
+                    text: ""
                 }
                 Button {
                     id: saveConfigButton
