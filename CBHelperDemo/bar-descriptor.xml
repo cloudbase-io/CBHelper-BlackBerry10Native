@@ -70,36 +70,31 @@
     <configuration name="Device-Debug">
        <platformArchitecture>armle-v7</platformArchitecture>
        <asset path="arm/o.le-v7-g/CBHelperDemo" entry="true" type="Qnx/Elf">CBHelperDemo</asset>
-       <asset path="${workspace_loc:/CBHelper/Device-Debug/libCBHelper.so}" type="Qnx/Elf">lib/libCBHelper.so</asset>
     </configuration>
     <configuration name="Device-Release">
        <entryPointType>Qnx/Cascades</entryPointType>
        <platformArchitecture>armle-v7</platformArchitecture>
        <asset path="arm/o.le-v7/CBHelperDemo.so" entry="true" type="Qnx/Elf">CBHelperDemo.so</asset>
-       <asset path="${workspace_loc:/CBHelper/Device-Release/libCBHelper.so}" type="Qnx/Elf">lib/libCBHelper.so</asset>
     </configuration>
     <configuration name="Device-Profile">
        <platformArchitecture>armle-v7</platformArchitecture>
        <asset path="arm-p/o.le-v7-g/CBHelperDemo" entry="true" type="Qnx/Elf">CBHelperDemo</asset>
-       <asset path="${workspace_loc:/CBHelper/Device-Release/libCBHelper.so}" type="Qnx/Elf">lib/libCBHelper.so</asset>
     </configuration>
     <configuration name="Simulator-Debug">
        <platformArchitecture>x86</platformArchitecture>
        <asset path="x86/o-g/CBHelperDemo" entry="true" type="Qnx/Elf">CBHelperDemo</asset>
-       <asset path="${workspace_loc:/CBHelper/Simulator-Debug/libCBHelper.so}" type="Qnx/Elf">lib/libCBHelper.so</asset>
     </configuration>
     
     <!--  The icon for the application, which should be 86x86. -->
 
-    <asset path="icon.png">icon.png</asset>
     <asset path="assets">assets</asset>
     
     <!-- Locale support -->
     <asset path="translations" dest="qm">
         <include name="*.qm"/>
     </asset>
-    <asset path="assets/images/facebook_logo.gif">facebook_logo.gif</asset>
     <asset path="assets/images/facebook_logo.png">facebook_logo.png</asset>
+    <asset path="${workspace_loc:/CBHelper/Simulator-Debug/libCBHelper.so}" type="Qnx/Elf">lib/libCBHelper.so</asset>
     
     <!-- Request permission to execute native code.  Required for native applications. -->
     <permission system="true">run_native</permission>

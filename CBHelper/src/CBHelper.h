@@ -56,7 +56,7 @@ namespace Cloudbase {
  * The cloudbase.io BlackBerry 10 helper class compiles to a .so dynamic library. The project
  * needs to be part of your workspace and the CBHelper directory in your path for
  * additional includes.<br/><br/>
- * This full reference is a companion to <a href="/documentation/blackberry10native" target="_blank">
+ * This full reference is a companion to <a href="/documentation/blackberry10" target="_blank">
  * the tutorial on the cloudbase.io website<a/>
  */
 #include <QObject>
