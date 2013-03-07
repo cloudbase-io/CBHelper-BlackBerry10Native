@@ -171,6 +171,10 @@ std::string CBHelperSearchCondition::serialize(CBHelperSearchCondition* cond, bo
 		case CBOperatorExists:
 		case CBOperatorNe:
 		case CBOperatorIn:
+		case CBOperatorBigger:
+		case CBOperatorBiggerOrEqual:
+		case CBOperatorLess:
+		case CBOperatorLessOrEqual:
 		case CBOperatorNin:
 		case CBOperatorSize:
 		case CBOperatorType:
