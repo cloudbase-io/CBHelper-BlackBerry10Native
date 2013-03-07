@@ -8,8 +8,10 @@
 				<externalSettings>
 					<externalSetting>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/CBHelper/public"/>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/CBHelper"/>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/CBHelper/Device-Debug"/>
 						<entry flags="" kind="libraryFile" name="CBHelper"/>
+						<entry flags="RESOLVED" kind="libraryFile" name="CBHelper"/>
 					</externalSetting>
 				</externalSettings>
 				<extensions>
@@ -35,6 +37,7 @@
 									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/public}"/>
 									<listOptionValue builtIn="false" value="${QNX_TARGET}/usr/include/freetype2"/>
 									<listOptionValue builtIn="false" value="${QNX_TARGET}/../target-override/usr/include"/>
+									<listOptionValue builtIn="false" value="&quot;${QNX_TARGET}/usr/include/qt4/&quot;"/>
 								</option>
 								<option id="com.qnx.qcc.option.compiler.security.667960753" name="Enhanced Security (-fstack-protector-strong)" superClass="com.qnx.qcc.option.compiler.security" value="true" valueType="boolean"/>
 								<option id="com.qnx.qcc.option.compiler.defines.1568858565" name="Defines (-D)" superClass="com.qnx.qcc.option.compiler.defines" valueType="definedSymbols">
@@ -53,6 +56,7 @@
 								<option id="com.qnx.qcc.option.linker.libraryPaths.1116059042" name="Library Paths (-L)" superClass="com.qnx.qcc.option.linker.libraryPaths" valueType="libPaths">
 									<listOptionValue builtIn="false" value="${QNX_TARGET}/../target-override/${CPUVARDIR}/lib"/>
 									<listOptionValue builtIn="false" value="${QNX_TARGET}/../target-override/${CPUVARDIR}/usr/lib"/>
+									<listOptionValue builtIn="false" value="&quot;${QNX_TARGET}/${CPUVARDIR}/usr/lib/qt4/lib&quot;"/>
 								</option>
 								<option id="com.qnx.qcc.option.linker.security.861552722" name="Enhanced Security (-Wl,-z,relro -Wl,-z,now)" superClass="com.qnx.qcc.option.linker.security" value="true" valueType="boolean"/>
 								<option id="com.qnx.qcc.option.linker.libraries.1511816816" name="Libraries (-l)" superClass="com.qnx.qcc.option.linker.libraries" valueType="libs">
@@ -69,7 +73,6 @@
 					</folderInfo>
 					<sourceEntries>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
-						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="public"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -80,8 +83,10 @@
 				<externalSettings>
 					<externalSetting>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/CBHelper/public"/>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/CBHelper"/>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/CBHelper/Device-Release"/>
 						<entry flags="" kind="libraryFile" name="CBHelper"/>
+						<entry flags="RESOLVED" kind="libraryFile" name="CBHelper"/>
 					</externalSetting>
 				</externalSettings>
 				<extensions>
@@ -92,7 +97,7 @@
 				</extensions>
 			</storageModule>
 			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
-				<configuration artifactExtension="so" artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.sharedLib" buildProperties="org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.release,org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.sharedLib" description="" id="com.qnx.qcc.configuration.sharedLib.release.119281972" name="Device-Release" parent="com.qnx.qcc.configuration.sharedLib.release">
+				<configuration artifactExtension="so" artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.sharedLib" buildProperties="org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.release,org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.sharedLib" description="" id="com.qnx.qcc.configuration.sharedLib.release.119281972" name="Device-Release" parent="com.qnx.qcc.configuration.sharedLib.release" postbuildStep="bash ${ProjDirPath}/copy_headers.sh ${ProjDirPath} ${ConfigName}">
 					<folderInfo id="com.qnx.qcc.configuration.sharedLib.release.119281972." name="/" resourcePath="">
 						<toolChain id="com.qnx.qcc.toolChain.sharedLib.release.705146889" name="QNX QCC" superClass="com.qnx.qcc.toolChain">
 							<option id="com.qnx.qcc.option.cpu.1341614780" name="Target CPU:" superClass="com.qnx.qcc.option.cpu" value="com.qnx.qcc.option.gen.cpu.armle-v7" valueType="enumerated"/>
@@ -106,6 +111,7 @@
 									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/public}"/>
 									<listOptionValue builtIn="false" value="${QNX_TARGET}/usr/include/freetype2"/>
 									<listOptionValue builtIn="false" value="${QNX_TARGET}/../target-override/usr/include"/>
+									<listOptionValue builtIn="false" value="&quot;${QNX_TARGET}/usr/include/qt4/&quot;"/>
 								</option>
 								<option id="com.qnx.qcc.option.compiler.security.1319471442" name="Enhanced Security (-fstack-protector-strong)" superClass="com.qnx.qcc.option.compiler.security" value="true" valueType="boolean"/>
 								<option id="com.qnx.qcc.option.compiler.defines.1861891244" name="Defines (-D)" superClass="com.qnx.qcc.option.compiler.defines" valueType="definedSymbols">
@@ -125,6 +131,7 @@
 								<option id="com.qnx.qcc.option.linker.libraryPaths.1564357075" name="Library Paths (-L)" superClass="com.qnx.qcc.option.linker.libraryPaths" valueType="libPaths">
 									<listOptionValue builtIn="false" value="${QNX_TARGET}/../target-override/${CPUVARDIR}/lib"/>
 									<listOptionValue builtIn="false" value="${QNX_TARGET}/../target-override/${CPUVARDIR}/usr/lib"/>
+									<listOptionValue builtIn="false" value="&quot;${QNX_TARGET}/${CPUVARDIR}/usr/lib/qt4/lib&quot;"/>
 								</option>
 								<option id="com.qnx.qcc.option.linker.security.933400410" name="Enhanced Security (-Wl,-z,relro -Wl,-z,now)" superClass="com.qnx.qcc.option.linker.security" value="true" valueType="boolean"/>
 								<option id="com.qnx.qcc.option.linker.libraries.1123928543" name="Libraries (-l)" superClass="com.qnx.qcc.option.linker.libraries" valueType="libs">
@@ -141,7 +148,6 @@
 					</folderInfo>
 					<sourceEntries>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
-						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="public"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -152,8 +158,10 @@
 				<externalSettings>
 					<externalSetting>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/CBHelper/public"/>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/CBHelper"/>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/CBHelper/Device-Profile"/>
 						<entry flags="" kind="libraryFile" name="CBHelper"/>
+						<entry flags="RESOLVED" kind="libraryFile" name="CBHelper"/>
 					</externalSetting>
 				</externalSettings>
 				<extensions>
@@ -180,6 +188,7 @@
 									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/public}"/>
 									<listOptionValue builtIn="false" value="${QNX_TARGET}/usr/include/freetype2"/>
 									<listOptionValue builtIn="false" value="${QNX_TARGET}/../target-override/usr/include"/>
+									<listOptionValue builtIn="false" value="&quot;${QNX_TARGET}/usr/include/qt4/&quot;"/>
 								</option>
 								<option id="com.qnx.qcc.option.compiler.security.1310171393" name="Enhanced Security (-fstack-protector-strong)" superClass="com.qnx.qcc.option.compiler.security" value="true" valueType="boolean"/>
 								<option id="com.qnx.qcc.option.compiler.defines.1719112147" name="Defines (-D)" superClass="com.qnx.qcc.option.compiler.defines" valueType="definedSymbols">
@@ -199,6 +208,7 @@
 								<option id="com.qnx.qcc.option.linker.libraryPaths.1096777563" name="Library Paths (-L)" superClass="com.qnx.qcc.option.linker.libraryPaths" valueType="libPaths">
 									<listOptionValue builtIn="false" value="${QNX_TARGET}/../target-override/${CPUVARDIR}/lib"/>
 									<listOptionValue builtIn="false" value="${QNX_TARGET}/../target-override/${CPUVARDIR}/usr/lib"/>
+									<listOptionValue builtIn="false" value="&quot;${QNX_TARGET}/${CPUVARDIR}/usr/lib/qt4/lib&quot;"/>
 								</option>
 								<option id="com.qnx.qcc.option.linker.security.131896844" name="Enhanced Security (-Wl,-z,relro -Wl,-z,now)" superClass="com.qnx.qcc.option.linker.security" value="true" valueType="boolean"/>
 								<option id="com.qnx.qcc.option.linker.libraries.275294187" name="Libraries (-l)" superClass="com.qnx.qcc.option.linker.libraries" valueType="libs">
@@ -215,7 +225,6 @@
 					</folderInfo>
 					<sourceEntries>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
-						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="public"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -226,8 +235,10 @@
 				<externalSettings>
 					<externalSetting>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/CBHelper/public"/>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/CBHelper"/>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/CBHelper/Device-Coverage"/>
 						<entry flags="" kind="libraryFile" name="CBHelper"/>
+						<entry flags="RESOLVED" kind="libraryFile" name="CBHelper"/>
 					</externalSetting>
 				</externalSettings>
 				<extensions>
@@ -254,6 +265,7 @@
 									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/public}"/>
 									<listOptionValue builtIn="false" value="${QNX_TARGET}/usr/include/freetype2"/>
 									<listOptionValue builtIn="false" value="${QNX_TARGET}/../target-override/usr/include"/>
+									<listOptionValue builtIn="false" value="&quot;${QNX_TARGET}/usr/include/qt4/&quot;"/>
 								</option>
 								<option id="com.qnx.qcc.option.compiler.security.1077554049" name="Enhanced Security (-fstack-protector-strong)" superClass="com.qnx.qcc.option.compiler.security" value="true" valueType="boolean"/>
 								<option id="com.qnx.qcc.option.compiler.defines.90235057" name="Defines (-D)" superClass="com.qnx.qcc.option.compiler.defines" valueType="definedSymbols">
@@ -273,6 +285,7 @@
 								<option id="com.qnx.qcc.option.linker.libraryPaths.475024363" name="Library Paths (-L)" superClass="com.qnx.qcc.option.linker.libraryPaths" valueType="libPaths">
 									<listOptionValue builtIn="false" value="${QNX_TARGET}/../target-override/${CPUVARDIR}/lib"/>
 									<listOptionValue builtIn="false" value="${QNX_TARGET}/../target-override/${CPUVARDIR}/usr/lib"/>
+									<listOptionValue builtIn="false" value="&quot;${QNX_TARGET}/${CPUVARDIR}/usr/lib/qt4/lib&quot;"/>
 								</option>
 								<option id="com.qnx.qcc.option.linker.security.1171567620" name="Enhanced Security (-Wl,-z,relro -Wl,-z,now)" superClass="com.qnx.qcc.option.linker.security" value="true" valueType="boolean"/>
 								<option id="com.qnx.qcc.option.linker.libraries.2143631256" name="Libraries (-l)" superClass="com.qnx.qcc.option.linker.libraries" valueType="libs">
@@ -289,7 +302,6 @@
 					</folderInfo>
 					<sourceEntries>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
-						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="public"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -300,8 +312,10 @@
 				<externalSettings>
 					<externalSetting>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/CBHelper/public"/>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/CBHelper"/>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/CBHelper/Simulator-Debug"/>
 						<entry flags="" kind="libraryFile" name="CBHelper"/>
+						<entry flags="RESOLVED" kind="libraryFile" name="CBHelper"/>
 					</externalSetting>
 				</externalSettings>
 				<extensions>
@@ -312,7 +326,7 @@
 				</extensions>
 			</storageModule>
 			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
-				<configuration artifactExtension="so" artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.sharedLib" buildProperties="org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.debug,org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.sharedLib" description="" id="com.qnx.qcc.configuration.sharedLib.debug.620894359" name="Simulator-Debug" parent="com.qnx.qcc.configuration.sharedLib.debug">
+				<configuration artifactExtension="so" artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.sharedLib" buildProperties="org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.debug,org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.sharedLib" description="" id="com.qnx.qcc.configuration.sharedLib.debug.620894359" name="Simulator-Debug" parent="com.qnx.qcc.configuration.sharedLib.debug" postbuildStep="bash ${ProjDirPath}/copy_headers.sh ${ProjDirPath} ${ConfigName}">
 					<folderInfo id="com.qnx.qcc.configuration.sharedLib.debug.620894359." name="/" resourcePath="">
 						<toolChain id="com.qnx.qcc.toolChain.sharedLib.debug.1315932193" name="QNX QCC" superClass="com.qnx.qcc.toolChain">
 							<targetPlatform archList="all" binaryParser="com.qnx.tools.ide.qde.core.QDEBynaryParser" id="com.qnx.qcc.targetPlatform.1567238491" osList="all" superClass="com.qnx.qcc.targetPlatform"/>
@@ -327,6 +341,7 @@
 									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/public}"/>
 									<listOptionValue builtIn="false" value="${QNX_TARGET}/usr/include/freetype2"/>
 									<listOptionValue builtIn="false" value="${QNX_TARGET}/../target-override/usr/include"/>
+									<listOptionValue builtIn="false" value="&quot;${QNX_TARGET}/usr/include/qt4/&quot;"/>
 								</option>
 								<option id="com.qnx.qcc.option.compiler.security.694925017" name="Enhanced Security (-fstack-protector-strong)" superClass="com.qnx.qcc.option.compiler.security" value="true" valueType="boolean"/>
 								<option id="com.qnx.qcc.option.compiler.defines.1722242307" name="Defines (-D)" superClass="com.qnx.qcc.option.compiler.defines" valueType="definedSymbols">
@@ -362,7 +377,6 @@
 					</folderInfo>
 					<sourceEntries>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
-						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="public"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -373,8 +387,10 @@
 				<externalSettings>
 					<externalSetting>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/CBHelper/public"/>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/CBHelper"/>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/CBHelper/Simulator-Profile"/>
 						<entry flags="" kind="libraryFile" name="CBHelper"/>
+						<entry flags="RESOLVED" kind="libraryFile" name="CBHelper"/>
 					</externalSetting>
 				</externalSettings>
 				<extensions>
@@ -400,6 +416,7 @@
 									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/public}"/>
 									<listOptionValue builtIn="false" value="${QNX_TARGET}/usr/include/freetype2"/>
 									<listOptionValue builtIn="false" value="${QNX_TARGET}/../target-override/usr/include"/>
+									<listOptionValue builtIn="false" value="&quot;${QNX_TARGET}/usr/include/qt4/&quot;"/>
 								</option>
 								<option id="com.qnx.qcc.option.compiler.security.770157669" name="Enhanced Security (-fstack-protector-strong)" superClass="com.qnx.qcc.option.compiler.security" value="true" valueType="boolean"/>
 								<option id="com.qnx.qcc.option.compiler.defines.697613125" name="Defines (-D)" superClass="com.qnx.qcc.option.compiler.defines" valueType="definedSymbols">
@@ -419,6 +436,7 @@
 								<option id="com.qnx.qcc.option.linker.libraryPaths.1387192294" name="Library Paths (-L)" superClass="com.qnx.qcc.option.linker.libraryPaths" valueType="libPaths">
 									<listOptionValue builtIn="false" value="${QNX_TARGET}/../target-override/${CPUVARDIR}/lib"/>
 									<listOptionValue builtIn="false" value="${QNX_TARGET}/../target-override/${CPUVARDIR}/usr/lib"/>
+									<listOptionValue builtIn="false" value="&quot;${QNX_TARGET}/${CPUVARDIR}/usr/lib/qt4/lib&quot;"/>
 								</option>
 								<option id="com.qnx.qcc.option.linker.security.72643933" name="Enhanced Security (-Wl,-z,relro -Wl,-z,now)" superClass="com.qnx.qcc.option.linker.security" value="true" valueType="boolean"/>
 								<option id="com.qnx.qcc.option.linker.libraries.2063812303" name="Libraries (-l)" superClass="com.qnx.qcc.option.linker.libraries" valueType="libs">
@@ -435,7 +453,6 @@
 					</folderInfo>
 					<sourceEntries>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
-						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="public"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -446,8 +463,10 @@
 				<externalSettings>
 					<externalSetting>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/CBHelper/public"/>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/CBHelper"/>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/CBHelper/Simulator-Coverage"/>
 						<entry flags="" kind="libraryFile" name="CBHelper"/>
+						<entry flags="RESOLVED" kind="libraryFile" name="CBHelper"/>
 					</externalSetting>
 				</externalSettings>
 				<extensions>
@@ -473,6 +492,7 @@
 									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/public}"/>
 									<listOptionValue builtIn="false" value="${QNX_TARGET}/usr/include/freetype2"/>
 									<listOptionValue builtIn="false" value="${QNX_TARGET}/../target-override/usr/include"/>
+									<listOptionValue builtIn="false" value="&quot;${QNX_TARGET}/usr/include/qt4/&quot;"/>
 								</option>
 								<option id="com.qnx.qcc.option.compiler.security.738423559" name="Enhanced Security (-fstack-protector-strong)" superClass="com.qnx.qcc.option.compiler.security" value="true" valueType="boolean"/>
 								<option id="com.qnx.qcc.option.compiler.defines.1103969561" name="Defines (-D)" superClass="com.qnx.qcc.option.compiler.defines" valueType="definedSymbols">
@@ -492,6 +512,7 @@
 								<option id="com.qnx.qcc.option.linker.libraryPaths.1974035495" name="Library Paths (-L)" superClass="com.qnx.qcc.option.linker.libraryPaths" valueType="libPaths">
 									<listOptionValue builtIn="false" value="${QNX_TARGET}/../target-override/${CPUVARDIR}/lib"/>
 									<listOptionValue builtIn="false" value="${QNX_TARGET}/../target-override/${CPUVARDIR}/usr/lib"/>
+									<listOptionValue builtIn="false" value="&quot;${QNX_TARGET}/${CPUVARDIR}/usr/lib/qt4/lib&quot;"/>
 								</option>
 								<option id="com.qnx.qcc.option.linker.security.1599949754" name="Enhanced Security (-Wl,-z,relro -Wl,-z,now)" superClass="com.qnx.qcc.option.linker.security" value="true" valueType="boolean"/>
 								<option id="com.qnx.qcc.option.linker.libraries.617438901" name="Libraries (-l)" superClass="com.qnx.qcc.option.linker.libraries" valueType="libs">
@@ -508,7 +529,6 @@
 					</folderInfo>
 					<sourceEntries>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
-						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="public"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -517,6 +537,9 @@
 	</storageModule>
 	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
 		<project id="CBHelper.null.1187428160" name="CBHelper"/>
+	</storageModule>
+	<storageModule moduleId="refreshScope" versionNumber="1">
+		<resource resourceType="PROJECT" workspacePath="/CBHelper"/>
 	</storageModule>
 	<storageModule moduleId="scannerConfiguration">
 		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="com.qnx.tools.ide.qde.managedbuilder.core.qccScannerInfo"/>

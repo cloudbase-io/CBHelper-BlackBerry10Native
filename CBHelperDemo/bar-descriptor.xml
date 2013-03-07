@@ -94,7 +94,6 @@
         <include name="*.qm"/>
     </asset>
     <asset path="assets/images/facebook_logo.png">facebook_logo.png</asset>
-    <asset path="${workspace_loc:/CBHelper/Simulator-Debug/libCBHelper.so}" type="Qnx/Elf">lib/libCBHelper.so</asset>
     
     <!-- Request permission to execute native code.  Required for native applications. -->
     <permission system="true">run_native</permission>
