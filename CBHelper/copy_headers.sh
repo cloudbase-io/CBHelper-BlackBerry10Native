@@ -6,5 +6,5 @@ mkdir $1/$2/headers
 
 #cp $(find $1/src -name *.h) $1/$2/headers/
 rsync -pavr                                                 \
-    --include '+ */' --include '*.h' --exclude '- *'      \
+    --include '+ */' --include '*.h' --include '*.moc' --exclude '- *'      \
     $1/src/ $1/$2/headers/
