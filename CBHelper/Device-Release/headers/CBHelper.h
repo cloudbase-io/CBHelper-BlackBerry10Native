@@ -271,7 +271,7 @@ private:
 	std::string generateURL();
 public Q_SLOTS:
 	/**
-	 * This slow is used internally to monitor the status of a request to the cloudbase.io APIs
+	 * This slot is used internally to monitor the status of a request to the cloudbase.io APIs
 	 */
 	void handleRequestCompleted(CBHelperResponseInfo resp, CBHelperResponder* responder);
 

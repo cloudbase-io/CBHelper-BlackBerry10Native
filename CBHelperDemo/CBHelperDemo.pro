@@ -20,10 +20,9 @@ LIBS += -L../../CBHelper/Device-Debug
 LIBS += -L../../CBHelper/Device-Release
 LIBS += -L../../CBHelper/Simulator-Debug
 
-PRE_TARGETDEPS += ../../CBHelper/Simulator-Debug/libCBHelper.so
 
 LIBS += -lCBHelper
-LIBS += -lbbdevice
+LIBS += -lbbdevice -lbbnetwork -lbbsystem -lcurl
 LIBS += -lQtLocationSubset
 LIBS +=  -lbbcascadespickers
 

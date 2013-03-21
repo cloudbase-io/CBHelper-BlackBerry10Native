@@ -224,9 +224,78 @@ TabbedPane {
         }
     }
     Tab {
-        title: qsTr("PayPal")
+        title: qsTr("Notifications")
         Page {
             id: tab5
+            actions: [
+                // define the actions for first tab here
+                ActionItem {
+                    title: qsTr("Rotate")
+                    onTriggered: {
+                        imgTab1.rotationZ = imgTab1.rotationZ + 90;
+                    }
+                },
+                ActionItem {
+                    title: qsTr("Break")
+                    onTriggered: {
+                        imgTab1.imageSource = "asset:///images/picture1br.png";
+                    }
+                }
+            ]
+            Container {
+                // define tab content here
+                Label {
+                    text: qsTr("cloudbase.io push notifications")
+                    horizontalAlignment: HorizontalAlignment.Center
+                    textStyle {
+                        base: SystemDefaults.TextStyles.TitleText
+                    }
+                }
+                TextField {
+                    id: pushAppIdField
+                    hintText: "Application id"
+                    topMargin: 30.0
+                    text: ""
+                }
+                TextField {
+                    id: pushTargetKeyField
+                    hintText: "Target key"
+                    text: ""
+                }
+                Button {
+                    id: savePushButton
+                    text: "Save"
+                    horizontalAlignment: HorizontalAlignment.Center
+                    topMargin: 30.0
+                    onClicked: {
+                        app.savePushButtonClicked(pushAppIdField.text, pushTargetKeyField.text);
+                    }
+                }
+                Button {
+                    id: subscribePushButton
+                    text: "Subscribe to channel"
+                    horizontalAlignment: HorizontalAlignment.Center
+                    topMargin: 30.0
+                    onClicked: {
+                        app.subscribePush();
+                    }
+                }
+                Button {
+                    id: sendPushButton
+                    text: "Push notification"
+                    horizontalAlignment: HorizontalAlignment.Center
+                    topMargin: 30.0
+                    onClicked: {
+                        app.sendPush();
+                    }
+                }
+            }
+        }
+    }
+    Tab {
+        title: qsTr("PayPal")
+        Page {
+            id: tab6
             actions: [
                 // define the actions for tab here
                 ActionItem {

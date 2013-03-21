@@ -4,14 +4,24 @@
 #include <bb/cascades/Application>
 #include <bb/cascades/QmlDocument>
 #include <QSettings>
+#include <QDebug>
+#include <bb/platform/Notification>
+#include <bb/system/InvokeRequest>
+#include <bb/network/PushPayload>
 
 #include "CBPayPal.h"
 
 using namespace bb::cascades;
+using namespace bb::network;
+using namespace bb::system;
+using namespace bb::platform;
 
 CBHelperDemo::CBHelperDemo(bb::cascades::Application *app)
-: QObject(app)
+: QObject(app), m_pushService(0), m_invokeManager(new InvokeManager(this))
 {
+	connect(m_invokeManager, SIGNAL(invoked(const bb::system::InvokeRequest&)),
+	            SLOT(onInvoked(const bb::system::InvokeRequest&)));
+
     // create scene document from main.qml asset
     // set parent to created document to ensure it exists for the whole application lifetime
     QmlDocument *qml = QmlDocument::create("asset:///main.qml").parent(this);
@@ -23,9 +33,10 @@ CBHelperDemo::CBHelperDemo(bb::cascades::Application *app)
     // create root object for the UI
     qml->setContextProperty("app", this);
     root = qml->createRootObject<AbstractPane>();
-    // set created root object as a scene
 
+    // set created root object as a scene
     app->setScene(root);
+
 }
 
 Q_INVOKABLE void CBHelperDemo::saveButtonClicked(QString appCode, QString appSecret, QString appPwd) {
@@ -37,6 +48,60 @@ Q_INVOKABLE void CBHelperDemo::saveButtonClicked(QString appCode, QString appSec
 	settings.setValue("appCode", appCode);
 	settings.setValue("appSecret", appSecret);
 	settings.setValue("appPwd", password);
+}
+
+Q_INVOKABLE void CBHelperDemo::savePushButtonClicked(QString appId, QString targetKey) {
+	m_pushService = new bb::network::PushService(appId, targetKey, this);
+	qDebug("init...");
+	//Connect the signals.
+	QObject::connect(m_pushService, SIGNAL(createSessionCompleted(const bb::network::PushStatus&)),
+					this, SLOT(onCreateSessionCompleted(const bb::network::PushStatus&)));
+
+	QObject::connect(m_pushService, SIGNAL(createChannelCompleted(const bb::network::PushStatus&, const QString)),
+					this, SLOT(onCreateChannelCompleted(const bb::network::PushStatus&, const QString)));
+
+	QObject::connect(m_pushService, SIGNAL(registerToLaunchCompleted(const bb::network::PushStatus&)),
+	                this, SLOT(onRegisterToLaunchCompleted(const bb::network::PushStatus&)));
+
+	m_pushService->createSession();
+}
+
+void CBHelperDemo::onCreateSessionCompleted(const bb::network::PushStatus& status) {
+	qDebug("onCreateSessionCompleted");
+	if (status.code() == bb::network::PushErrorCode::NoError) {
+		m_pushService->registerToLaunch();
+	}
+}
+
+void CBHelperDemo::onRegisterToLaunchCompleted(const bb::network::PushStatus& status) {
+	qDebug("onRegisterToLaunchCompleted");
+	if (m_pushService->hasConnection()){
+		QUrl pushAddress("https://cpXXX.pushapi.eval.blackberry.com");
+		m_pushService->createChannel(pushAddress);
+	} else {
+		qDebug("No connection");
+	}
+}
+
+void CBHelperDemo::onCreateChannelCompleted(const bb::network::PushStatus& status, const QString channel) {
+	qDebug("Create channel completed %s", channel.toStdString().c_str());
+
+	this->helper->subscribeDeviceWithToken(channel.toStdString(), "my-test-channel", this);
+}
+
+void CBHelperDemo::onInvoked(const bb::system::InvokeRequest &request)
+{
+    if (request.action().compare(BB_PUSH_INVOCATION_ACTION) == 0) {
+    	qDebug() << "Received push action";
+        // Received an incoming push
+    	// Extract it from the invoke request and then process it
+        PushPayload payload(request);
+        if (payload.isValid()) {
+        	qDebug("received push notification");
+        }
+    } else {
+    	qDebug() << "Received other action";
+    }
 }
 
 Q_INVOKABLE void CBHelperDemo::logButtonClicked(QString logMessage) {
@@ -109,6 +174,13 @@ Q_INVOKABLE void CBHelperDemo::payPalButtonClicked() {
 	newBill.addItem(newItem);
 
 	helper->preparePayPalPurchase(newBill, true, this);
+}
+
+Q_INVOKABLE void CBHelperDemo::subscribePush() {
+	helper->subscribeDeviceWithToken("", "test-bb10", this);
+}
+Q_INVOKABLE void CBHelperDemo::sendPush() {
+	helper->sendNotification("test-bb10", "this is a test notification message", this);
 }
 
 void CBHelperDemo::parseResponse(Cloudbase::CBHelperResponseInfo resp) {

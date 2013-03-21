@@ -26,7 +26,7 @@
 
     <!-- A universally unique application identifier. Must be unique across all BlackBerry Tablet OS applications.
          Using a reverse DNS-style name as the id is recommended. (Eg. com.example.ExampleApplication.) Required. -->
-    <id>com.example.CBHelperDemo</id>
+    <id>com.cloudbase.CBHelperDemo</id>
 
     <!-- The name that is displayed in the BlackBerry Tablet OS application installer. 
          May have multiple values for each language. See samples or xsd schema file. Optional. -->
@@ -70,19 +70,22 @@
     <configuration name="Device-Debug">
        <platformArchitecture>armle-v7</platformArchitecture>
        <asset path="arm/o.le-v7-g/CBHelperDemo" entry="true" type="Qnx/Elf">CBHelperDemo</asset>
+       <asset path="${workspace_loc:/CBHelper/Device-Debug/libCBHelper.a}" type="Qnx/Elf">lib/libCBHelper.a</asset>
     </configuration>
     <configuration name="Device-Release">
        <entryPointType>Qnx/Cascades</entryPointType>
        <platformArchitecture>armle-v7</platformArchitecture>
-       <asset path="arm/o.le-v7/CBHelperDemo.so" entry="true" type="Qnx/Elf">CBHelperDemo.so</asset>
+       <asset path="arm/o.le-v7/CBHelperDemo.a" entry="true" type="Qnx/Elf">CBHelperDemo.a</asset>
     </configuration>
     <configuration name="Device-Profile">
        <platformArchitecture>armle-v7</platformArchitecture>
        <asset path="arm-p/o.le-v7-g/CBHelperDemo" entry="true" type="Qnx/Elf">CBHelperDemo</asset>
+       <asset path="${workspace_loc:/CBHelper/Device-Release/libCBHelper.so}" type="Qnx/Elf">lib/libCBHelper.so</asset>
     </configuration>
     <configuration name="Simulator-Debug">
        <platformArchitecture>x86</platformArchitecture>
        <asset path="x86/o-g/CBHelperDemo" entry="true" type="Qnx/Elf">CBHelperDemo</asset>
+       <asset path="${workspace_loc:/CBHelper/Simulator-Debug/libCBHelper.a}" type="Qnx/Elf">lib/libCBHelper.a</asset>
     </configuration>
     
     <!--  The icon for the application, which should be 86x86. -->
@@ -99,10 +102,18 @@
     <permission system="true">run_native</permission>
     <permission>read_device_identifying_information</permission>
     <permission>read_geolocation</permission>
+    <permission>post_notification</permission>
     <permission>access_internet</permission>
     <permission>access_location_services</permission>
     <permission system="true">_sys_use_consumer_push</permission>
     <permission>access_shared</permission>
     <env var="LD_LIBRARY_PATH" value="app/native/lib:/usr/lib/qt4/lib"/>
 
+	<invoke-target id="com.cloudbase.CBHelperDemo.invoke.push">
+      <type>APPLICATION</type>
+      <filter>
+         <action>bb.action.PUSH</action>
+         <mime-type>application/vnd.push</mime-type>
+      </filter>
+    </invoke-target>
 </qnx>

@@ -5,11 +5,13 @@
     <name>main</name>
     <message>
         <location filename="../assets/main.qml" line="14"/>
+        <location filename="../assets/main.qml" line="233"/>
         <source>Rotate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../assets/main.qml" line="20"/>
+        <location filename="../assets/main.qml" line="239"/>
         <source>Break</source>
         <translation type="unfinished"></translation>
     </message>
@@ -45,11 +47,21 @@
     </message>
     <message>
         <location filename="../assets/main.qml" line="227"/>
+        <source>Notifications</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/main.qml" line="248"/>
+        <source>cloudbase.io push notifications</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/main.qml" line="296"/>
         <source>PayPal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="243"/>
+        <location filename="../assets/main.qml" line="312"/>
         <source>cloudbase.io PayPal APIs</source>
         <translation type="unfinished"></translation>
     </message>
@@ -66,7 +78,7 @@
     <message>
         <location filename="../assets/main.qml" line="73"/>
         <location filename="../assets/main.qml" line="185"/>
-        <location filename="../assets/main.qml" line="233"/>
+        <location filename="../assets/main.qml" line="302"/>
         <source>Raise</source>
         <translation type="unfinished"></translation>
     </message>

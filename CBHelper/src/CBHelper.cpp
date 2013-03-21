@@ -205,10 +205,10 @@ void CBHelper::unsubscribeDeviceWithToken(std::string token, std::string channel
 	con->CBResponder = responder;
 	con->start();
 }
-void CBHelper::sendNotification(std::string channel, std::string certType, std::string notification, std::string badge, std::string sound, CBHelperResponder* responder) {
+void CBHelper::sendNotification(std::string channel, std::string notification, CBHelperResponder* responder) {
 	CBHttpConnection* con = this->createConnection("notifications");
 
-	CBPushNotificationMessage* notif = new CBPushNotificationMessage(channel, certType, notification, badge, sound);
+	CBPushNotificationMessage* notif = new CBPushNotificationMessage(channel, notification);
 
 	std::string url = this->generateURL();
 	url += "/" + this->appCode;
