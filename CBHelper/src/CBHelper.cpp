@@ -51,6 +51,8 @@ void CBHelper::baseInit() {
 
 	this->notificationNetwork = "bb";
 	this->currentLocation = NULL;
+
+	devicePin = bbInfo->pin().toStdString();
 }
 
 void CBHelper::registerDevice() {
@@ -176,10 +178,10 @@ void CBHelper::downloadFile(std::string fileId, CBHelperResponder* responder) {
 
 }
 
-void CBHelper::subscribeDeviceWithToken(std::string token, std::string channel, CBHelperResponder* responder) {
+void CBHelper::subscribeDeviceWithToken(std::string channel, CBHelperResponder* responder) {
 	CBHttpConnection* con = this->createConnection("notifications-register");
 	std::string network = "bb";
-	CBPushNotification* notif = new CBPushNotification("subscribe", token, channel, network);
+	CBPushNotification* notif = new CBPushNotification("subscribe", devicePin, channel, network);
 
 	std::string url = this->generateURL();
 	url += "/" + this->appCode;

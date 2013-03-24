@@ -5,13 +5,13 @@
     <name>main</name>
     <message>
         <location filename="../assets/main.qml" line="14"/>
-        <location filename="../assets/main.qml" line="233"/>
+        <location filename="../assets/main.qml" line="231"/>
         <source>Rotate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../assets/main.qml" line="20"/>
-        <location filename="../assets/main.qml" line="239"/>
+        <location filename="../assets/main.qml" line="237"/>
         <source>Break</source>
         <translation type="unfinished"></translation>
     </message>
@@ -21,47 +21,47 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="83"/>
+        <location filename="../assets/main.qml" line="81"/>
         <source>cloudbase.io log APIs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="107"/>
+        <location filename="../assets/main.qml" line="105"/>
         <source>Data</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="113"/>
+        <location filename="../assets/main.qml" line="111"/>
         <source>cloudbase.io data APIs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="179"/>
+        <location filename="../assets/main.qml" line="177"/>
         <source>CloudFunctions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="195"/>
+        <location filename="../assets/main.qml" line="193"/>
         <source>cloudbase.io CloudFunction APIs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="227"/>
+        <location filename="../assets/main.qml" line="225"/>
         <source>Notifications</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="248"/>
+        <location filename="../assets/main.qml" line="246"/>
         <source>cloudbase.io push notifications</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="296"/>
+        <location filename="../assets/main.qml" line="294"/>
         <source>PayPal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="312"/>
+        <location filename="../assets/main.qml" line="310"/>
         <source>cloudbase.io PayPal APIs</source>
         <translation type="unfinished"></translation>
     </message>
@@ -71,14 +71,14 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="67"/>
+        <location filename="../assets/main.qml" line="65"/>
         <source>Log</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="73"/>
-        <location filename="../assets/main.qml" line="185"/>
-        <location filename="../assets/main.qml" line="302"/>
+        <location filename="../assets/main.qml" line="71"/>
+        <location filename="../assets/main.qml" line="183"/>
+        <location filename="../assets/main.qml" line="300"/>
         <source>Raise</source>
         <translation type="unfinished"></translation>
     </message>

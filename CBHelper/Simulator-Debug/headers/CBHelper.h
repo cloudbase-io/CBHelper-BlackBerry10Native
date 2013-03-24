@@ -160,12 +160,11 @@ public:
 	/**
 	 * Subscribes the devices with the current token received from the manufacturer to a notification channel. All devices are
 	 * autmatically subscribed to the channel <strong>all</strong>.
-	 * @param token The token returned by the createChannelCompleted SIGNAR of the bb::network::PushService object
 	 * @param channel The name of the channel the device is subscribing to - if the channel doesn't exist it is
 	 * automatically created
 	 * @param responder The CBHelperResponder object to handle the response from the cloudbase.io servers
 	 */
-	void subscribeDeviceWithToken(std::string token, std::string channel, CBHelperResponder* responder = NULL);
+	void subscribeDeviceWithToken(std::string channel, CBHelperResponder* responder = NULL);
 	/**
 	 * Unsubscribes a device from a notification channel.
 	 * @param token The token returned by the createChannelCompleted SIGNAR of the bb::network::PushService object
@@ -259,6 +258,8 @@ protected:
 	CBHttpConnection* createConnection(std::string function);
 private:
 	bool deviceRegistered;
+
+	std::string devicePin;
 
 	void baseInit();
 	std::string generateURL();

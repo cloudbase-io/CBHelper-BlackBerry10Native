@@ -52,7 +52,6 @@ Q_INVOKABLE void CBHelperDemo::saveButtonClicked(QString appCode, QString appSec
 
 Q_INVOKABLE void CBHelperDemo::savePushButtonClicked(QString appId, QString targetKey) {
 	m_pushService = new bb::network::PushService(appId, targetKey, this);
-	qDebug("init...");
 	//Connect the signals.
 	QObject::connect(m_pushService, SIGNAL(createSessionCompleted(const bb::network::PushStatus&)),
 					this, SLOT(onCreateSessionCompleted(const bb::network::PushStatus&)));
@@ -86,7 +85,7 @@ void CBHelperDemo::onRegisterToLaunchCompleted(const bb::network::PushStatus& st
 void CBHelperDemo::onCreateChannelCompleted(const bb::network::PushStatus& status, const QString channel) {
 	qDebug("Create channel completed %s", channel.toStdString().c_str());
 
-	this->helper->subscribeDeviceWithToken(channel.toStdString(), "my-test-channel", this);
+	this->helper->subscribeDeviceWithToken("my-test-channel", this);
 }
 
 void CBHelperDemo::onInvoked(const bb::system::InvokeRequest &request)

@@ -112,7 +112,7 @@ std::string CBHelperSearchCondition::serializeAggregateConditions() {
 }
 
 std::string CBHelperSearchCondition::serialize() {
-	std::string output = "";
+	std::string output = " { ";
 	if (!this->sortFields_.empty()) {
 		output += "\"cb_sort_key\" : [";
 		for (int i = 0; i < (int)this->sortFields_.size(); i++) {
@@ -127,7 +127,7 @@ std::string CBHelperSearchCondition::serialize() {
 		output += "\"cb_limit\" : " + this->limit;
 		output += ", ";
 	}
-	output += "\"cb_search_key\" : { ";
+	output += "\"cb_search_key\" : ";
 
 	output += this->serialize(this, true);
 

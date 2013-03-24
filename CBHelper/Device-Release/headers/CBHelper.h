@@ -160,17 +160,14 @@ public:
 	/**
 	 * Subscribes the devices with the current token received from the manufacturer to a notification channel. All devices are
 	 * autmatically subscribed to the channel <strong>all</strong>.
-	 * cloudbase.io does not support push notifications to BlackBerry devices yet. These notifications will be sent to all other
-	 * device types connected to the channel
-	 * @param token The token returned by the Apple notification services or C2DM.
 	 * @param channel The name of the channel the device is subscribing to - if the channel doesn't exist it is
 	 * automatically created
 	 * @param responder The CBHelperResponder object to handle the response from the cloudbase.io servers
 	 */
-	void subscribeDeviceWithToken(std::string token, std::string channel, CBHelperResponder* responder = NULL);
+	void subscribeDeviceWithToken(std::string channel, CBHelperResponder* responder = NULL);
 	/**
 	 * Unsubscribes a device from a notification channel.
-	 * @param token The token returned by the Apple notification services or C2DM.
+	 * @param token The token returned by the createChannelCompleted SIGNAR of the bb::network::PushService object
 	 * @param channel The name of the channel the device is unsubscribing from
 	 * @param fromAll Whether it should also be removed from the "all" channel
 	 * @param responder The CBHelperResponder object to handle the response from the cloudbase.io servers
@@ -179,16 +176,11 @@ public:
 	/**
 	 * Sends a push notification to a specific channel. Push notifications from client devices need to be enabled
 	 * in the application security settings in your cloudbase.io control panel.
-	 * cloudbase.io does not support push notifications to BlackBerry devices yet. These notifications will be sent to all other
-	 * device types connected to the channel
 	 * @param channel The name of the channel to notify
-	 * @param certType The Apple certiicate type for the notification (production/development)
-	 * @param notification The text of the notification
-	 * @param badge The ID of the badge to be used for the notification
-	 * @param sound The name of the sound to be used for the notification
+	 * @param notification The content of the notification
 	 * @param responder The CBHelperResponder object to handle the response from the cloudbase.io servers
 	 */
-	void sendNotification(std::string channel, std::string certType, std::string notification, std::string badge, std::string sound, CBHelperResponder* responder = NULL);
+	void sendNotification(std::string channel, std::string notification, CBHelperResponder* responder = NULL);
 	/**
 	 * Sends an email to a recipient using a template previously created on cloudbase.io
 	 * @param templateCode The code assigned to the template
@@ -266,6 +258,8 @@ protected:
 	CBHttpConnection* createConnection(std::string function);
 private:
 	bool deviceRegistered;
+
+	std::string devicePin;
 
 	void baseInit();
 	std::string generateURL();
@@ -382,25 +376,22 @@ private:
 
 class CBPushNotificationMessage : public CBSerializable {
 public:
-	CBPushNotificationMessage(std::string channel, std::string certType, std::string notification, std::string badge, std::string sound) :
-		channel_(channel), certificateType_(certType), notification_(notification), badge_(badge), sound_(sound) {};
+	CBPushNotificationMessage(std::string channel, std::string notification) :
+		channel_(channel), notification_(notification) {};
 
 	std::string serialize() {
 		std::string out = "{";
 		out += "\"channel\" : \"" + channel_ + "\", ";
-		out += "\"cert_type\" : \"" + certificateType_ + "\", ";
+		out += "\"cert_type\" : \"production\", ";
 		out += "\"alert\" : \"" + notification_ + "\", ";
-		out += "\"badge\" : \"" + badge_ + "\", ";
-		out += "\"sound\" : \"" + sound_ + "\" } ";
+		out += "\"badge\" : \"\", ";
+		out += "\"sound\" : \"\" } ";
 
 		return out;
 	}
 private:
 	std::string channel_;
-	std::string certificateType_;
 	std::string notification_;
-	std::string badge_;
-	std::string sound_;
 };
 
 class CBNotificationEmail : public CBSerializable {

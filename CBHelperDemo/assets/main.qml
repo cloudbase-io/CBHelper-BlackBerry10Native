@@ -55,8 +55,6 @@ TabbedPane {
                     horizontalAlignment: HorizontalAlignment.Center
                     topMargin: 30.0
                     onClicked: {
-                        console.log("event from qml");
-                        
                         app.saveButtonClicked(appCodeField.text, appSecretField.text, appPwdField.text);
                     }
                 }
