@@ -43,6 +43,11 @@ const std::string CBHelperSearchCondition::CBConditionLink_ToString[] = {
 		"$nor"
 	};
 
+const std::string CBHelperSearchCondition::CBSortDirection_ToString[] = {
+		"1",
+		"-1"
+	};
+
 
 CBHelperSearchCondition::CBHelperSearchCondition() {
 	this->baseInit();
@@ -103,7 +108,7 @@ void CBHelperSearchCondition::baseInit() {
 void CBHelperSearchCondition::addSortField(std::string fieldName, CBSortDirection dir) {
 	std::string sortField = "{ \"";
 	sortField += fieldName + "\" : ";
-	sortField += dir + " }";
+	sortField += CBSortDirection_ToString[dir] + " }";
 	this->sortFields_.insert(this->sortFields_.begin(), sortField);
 }
 

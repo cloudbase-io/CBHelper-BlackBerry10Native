@@ -59,8 +59,8 @@ typedef enum CBConditionLink {
  * Direction for sorting of search results
  */
 typedef enum CBSortDirection {
-	CBSortAscending = 1, //!< CBSortAscending
-	CBSortDescending = -1//!< CBSortDescending
+	CBSortAscending, //!< CBSortAscending
+	CBSortDescending //!< CBSortDescending
 } CBSortDirection;
 
 /**
@@ -73,6 +73,7 @@ public:
 	/// std::string arrays to convert the condition operator and link from the struct to a std::string
 	const static std::string CBConditionOperator_ToString[];
 	const static std::string CBConditionLink_ToString[];
+	const static std::string CBSortDirection_ToString[];
 
 	/**
 	 * Creates a new empty search conditions. Before being used this condition will need to set at
