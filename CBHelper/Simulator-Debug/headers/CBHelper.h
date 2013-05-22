@@ -56,7 +56,7 @@ namespace Cloudbase {
  * The cloudbase.io BlackBerry 10 helper class compiles to a .so dynamic library. The project
  * needs to be part of your workspace and the CBHelper directory in your path for
  * additional includes.<br/><br/>
- * This full reference is a companion to <a href="/documentation/blackberry10" target="_blank">
+ * This full reference is a companion to <a href="/documentation/blackberry-10/get-started" target="_blank">
  * the tutorial on the cloudbase.io website<a/>
  */
 #include <QObject>
@@ -208,6 +208,17 @@ public:
 	 * contains the output from the Applet
 	 */
 	void executeApplet(std::string appletCode, std::map<std::string, std::string> params, CBHelperResponder* responder = NULL);
+
+	/**
+	 * Executes a cloudbase.io Shared Api
+	 * @param apiCode The unique identifier for the Shared Api
+	 * @param password The password for the Shared Api if required
+	 * @param params Additional parameters for the Shared Api
+	 * @param responder The CBHelperResponder object to handle the response from the cloudbase.io servers which
+	 * contains the output from the Shared Api
+	 */
+	void executeSharedApi(std::string apiCode, std::string password, std::map<std::string, std::string> params, CBHelperResponder* responder = NULL);
+
 	/**
 	 * Initiates a transaction with PayPal by sending the payment details and retrieving a token
 	 * and an express checkout url. The url returned should be then opened in a browser window.

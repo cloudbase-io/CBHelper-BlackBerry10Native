@@ -261,6 +261,24 @@ void CBHelper::executeApplet(std::string appletCode, std::map<std::string, std::
 	con->CBResponder = responder;
 	con->start();
 }
+void CBHelper::executeSharedApi(std::string apiCode, std::string password, std::map<std::string, std::string> params, CBHelperResponder* responder) {
+	CBHttpConnection* con = this->createConnection("shared-api");
+
+	if ( !password.empty() ) {
+		params.insert(std::make_pair("cb_shared_password", password));
+	}
+
+	con->additionalPostParams = params;
+
+	std::string url = this->generateURL();
+	url += "/" + this->appCode;
+	url += "/shared/";
+	url += apiCode;
+
+	con->url = url;
+	con->CBResponder = responder;
+	con->start();
+}
 void CBHelper::preparePayPalPurchase(CBPayPalBill purchaseDetails, bool isLiveEnvironment, CBHelperResponder* responder) {
 	CBHttpConnection* con = this->createConnection("paypal");
 

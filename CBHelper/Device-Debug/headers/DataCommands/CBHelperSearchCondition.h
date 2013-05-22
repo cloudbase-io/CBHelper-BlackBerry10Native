@@ -142,6 +142,7 @@ public:
 	 * This property is the maximum number of results to be returned by the search
 	 */
 	int limit;
+	int offset;
 protected:
 	void baseInit();
 

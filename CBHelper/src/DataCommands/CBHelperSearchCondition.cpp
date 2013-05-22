@@ -102,6 +102,7 @@ void CBHelperSearchCondition::baseInit() {
 	this->field_ = "";
 	this->value_ = "";
 	this->limit = -1;
+	this->offset = -1;
 	this->commandType = CBDataAggregationMatch;
 }
 
@@ -130,6 +131,11 @@ std::string CBHelperSearchCondition::serialize() {
 
 	if (this->limit > 0) {
 		output += "\"cb_limit\" : " + this->limit;
+		output += ", ";
+	}
+
+	if (this->offset > 0) {
+		output += "\"cb_offset\" : " + this->offset;
 		output += ", ";
 	}
 	output += "\"cb_search_key\" : ";
