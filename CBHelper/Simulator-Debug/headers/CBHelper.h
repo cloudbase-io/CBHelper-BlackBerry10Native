@@ -61,7 +61,7 @@ namespace Cloudbase {
  */
 #include <QObject>
 
-class CBHelper : public QObject {
+class CBHelper : public QObject, CBHelperResponder {
 	Q_OBJECT
 public:
 	bool debugMode;
@@ -245,6 +245,9 @@ public:
 	 */
 	void setAuthentication(std::string username, std::string password);
 
+
+	void parseResponse(CBHelperResponseInfo resp);
+
 protected:
 	std::string appCode;
 	std::string appUniq;
@@ -269,6 +272,7 @@ protected:
 	CBHttpConnection* createConnection(std::string function);
 private:
 	bool deviceRegistered;
+	//CBRegisterDeviceResponder* registerResponder;
 
 	std::string devicePin;
 
@@ -352,14 +356,6 @@ private:
 	std::string deviceChannel;
 	std::string deviceNetwork;
 	bool fromAll;
-};
-
-class CBRegisterDeviceResponder : public CBHelperResponder {
-public:
-	CBRegisterDeviceResponder(CBHelper* helperInstance);
-	void parseResponse(CBHelperResponseInfo resp);
-private:
-	CBHelper* helper;
 };
 
 class CBLogLine : public CBSerializable {

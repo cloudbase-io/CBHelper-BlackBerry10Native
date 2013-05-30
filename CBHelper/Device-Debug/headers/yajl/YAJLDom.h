@@ -47,6 +47,14 @@ namespace YAJLDom {
 			(obj) = NULL;\
 		}\
 	}
+struct KeyString {
+	KeyString() {}
+	KeyString(const char* s, int len) : str(s), length(len) {
+	}
+	const char* str;
+	int length;
+};
+
 
 class Value {
 	public:
@@ -152,21 +160,49 @@ class Value {
 		std::vector<Value*> mValues;
 	};
 
-	/**
-	 * Parse Json string data and return the root node of
-	 * the document tree.
-	 * \param jsonText UTF8 or ASCII.
-	 * \param jsonTextLength Length of Json text.
-	 * \return The root node if successful, or NULL on error.
-	 * The returned node must be deallocated with delete.
-	 */
-	Value* parse(const unsigned char* jsonText, size_t jsonTextLength);
+	class YAJLParser {
+	public:
+		YAJLParser() {};
 
-	/**
-	 * Use this function to safely delete a value (won't do anything if the value is NULL or equal to sNullValue).
-	 * sNullValue might be returned if you do getValueByIndex or getValueForKey and the key or element doesn't exist.
-	 */
-	void deleteValue(Value* value);
+		Value *sRoot;
+		Stack<Value*> sValueStack;
+		Stack<KeyString> sKeyStack;
+		yajl_gen g;
+
+		/**
+		 * Parse Json string data and return the root node of
+		 * the document tree.
+		 * \param jsonText UTF8 or ASCII.
+		 * \param jsonTextLength Length of Json text.
+		 * \return The root node if successful, or NULL on error.
+		 * The returned node must be deallocated with delete.
+		 */
+		Value* parse(const unsigned char* jsonText, size_t jsonTextLength);
+
+		/**
+		 * Use this function to safely delete a value (won't do anything if the value is NULL or equal to sNullValue).
+		 * sNullValue might be returned if you do getValueByIndex or getValueForKey and the key or element doesn't exist.
+		 */
+		void deleteValue(Value* value);
+
+		// static methods
+		static int parse_null(void * ctx);
+		static int parse_boolean(void * ctx, int boolean);
+		static int parse_number(void * ctx, const char * s, unsigned int l);
+		static int parse_string(void * ctx, const unsigned char * stringVal, unsigned int stringLen);
+		static int parse_map_key(void * ctx, const unsigned char * stringVal, unsigned int stringLen);
+		static int parse_start_map(void * ctx);
+		static int parse_end_map(void * ctx);
+		static int parse_start_array(void * ctx);
+		static int parse_end_array(void * ctx);
+
+		Value* validateValue(Value* value, Value::Type type);
+		void printValue(Value* value);
+		void pushValue(Value *value);
+		void popValue();
+		void gen_print(void *ctx, const char *str, unsigned int len);
+		void parseError(yajl_handle hand, int verbose, const unsigned char* jsonText, size_t jsonTextLength);
+	};
 
 } // namespace YAJLDom
 

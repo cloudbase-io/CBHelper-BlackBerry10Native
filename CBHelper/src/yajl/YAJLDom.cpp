@@ -268,27 +268,14 @@ const Value* ArrayValue::getValueByIndex(int i) const {
 	return mValues[i];
 }
 
-Value *sRoot = NULL;
-Stack<Value*> sValueStack;
-
-struct KeyString {
-	KeyString() {}
-	KeyString(const char* s, int len) : str(s), length(len) {
-	}
-	const char* str;
-	int length;
-};
-
-Stack<KeyString> sKeyStack;
-
-Value* validateValue(Value* value, Value::Type type) {
+Value* YAJLParser::validateValue(Value* value, Value::Type type) {
 	if (value->getType() != type)
 		return &sNullValue;
 	else
 		return value;
 }
 
-void printValue(Value* value) {
+void YAJLParser::printValue(Value* value) {
 
 	if(!value) {
 		qDebug("NULL pointer!!\n");
@@ -305,7 +292,7 @@ void printValue(Value* value) {
 	}
 }
 
-void pushValue(Value *value) {
+void YAJLParser::pushValue(Value *value) {
 	Value* parent;
 
 	if (value == NULL) {
@@ -331,6 +318,7 @@ void pushValue(Value *value) {
 		else
 		{
 			qDebug("YAJLDom::pushValue, sValueStack.size() is 0.");
+			return;
 		}
 	}
 	parent = sValueStack.peek();
@@ -370,94 +358,89 @@ void pushValue(Value *value) {
 		sValueStack.push(value);
 }
 
-void popValue() {
+void YAJLParser::popValue() {
 	sValueStack.pop();
 }
 
-static int parse_null(void * ctx) {
-	yajl_gen g = (yajl_gen) ctx;
-	yajl_gen_null(g);
-	pushValue(newobject(NullValue, new NullValue()));
+int YAJLParser::parse_null(void * ctx) {
+	//yajl_gen g = (yajl_gen) ctx;
+	yajl_gen_null((static_cast<YAJLParser*>(ctx))->g);
+	(static_cast<YAJLParser*>(ctx))->pushValue(newobject(NullValue, new NullValue()));
 	return 1;
 }
 
-static int parse_boolean(void * ctx, int boolean) {
-	yajl_gen g = (yajl_gen) ctx;
-	yajl_gen_bool(g, boolean);
-	pushValue(newobject(BooleanValue, new BooleanValue((bool) boolean)));
+int YAJLParser::parse_boolean(void * ctx, int boolean) {
+	//yajl_gen g = (yajl_gen) ctx;
+	yajl_gen_bool((static_cast<YAJLParser*>(ctx))->g, boolean);
+	(static_cast<YAJLParser*>(ctx))->pushValue(newobject(BooleanValue, new BooleanValue((bool) boolean)));
 	return 1;
 }
 
-static int parse_number(void * ctx, const char * s, unsigned int l) {
-	yajl_gen g = (yajl_gen) ctx;
-	yajl_gen_number(g, s, l);
-	pushValue(newobject(NumberValue, new NumberValue(atof(std::string(s, l).c_str()))));
+int YAJLParser::parse_number(void * ctx, const char * s, unsigned int l) {
+	//yajl_gen g = (yajl_gen) ctx;
+	yajl_gen_number((static_cast<YAJLParser*>(ctx))->g, s, l);
+	(static_cast<YAJLParser*>(ctx))->pushValue(newobject(NumberValue, new NumberValue(atof(std::string(s, l).c_str()))));
 	return 1;
 }
 
-static int parse_string(void * ctx, const unsigned char * stringVal,
+int YAJLParser::parse_string(void * ctx, const unsigned char * stringVal,
 		unsigned int stringLen) {
-	yajl_gen g = (yajl_gen) ctx;
-	yajl_gen_string(g, stringVal, stringLen);
-	pushValue(newobject(StringValue, new StringValue(std::string((const char*) stringVal, stringLen))));
+	//yajl_gen g = (yajl_gen) ctx;
+	yajl_gen_string((static_cast<YAJLParser*>(ctx))->g, stringVal, stringLen);
+	(static_cast<YAJLParser*>(ctx))->pushValue(newobject(StringValue, new StringValue(std::string((const char*) stringVal, stringLen))));
 	return 1;
 }
 
-static int parse_map_key(void * ctx, const unsigned char * stringVal,
+int YAJLParser::parse_map_key(void * ctx, const unsigned char * stringVal,
 		unsigned int stringLen) {
-	yajl_gen g = (yajl_gen) ctx;
-	yajl_gen_string(g, stringVal, stringLen);
-	sKeyStack.push(KeyString((const char*) stringVal, stringLen));
+	//yajl_gen g = (yajl_gen) ctx;
+	yajl_gen_string((static_cast<YAJLParser*>(ctx))->g, stringVal, stringLen);
+	(static_cast<YAJLParser*>(ctx))->sKeyStack.push(KeyString((const char*) stringVal, stringLen));
 	return 1;
 }
 
-static int parse_start_map(void * ctx) {
-	yajl_gen g = (yajl_gen) ctx;
-	yajl_gen_map_open(g);
-	pushValue(newobject(MapValue, new MapValue()));
+int YAJLParser::parse_start_map(void * ctx) {
+	//yajl_gen g = (yajl_gen) ctx;
+	yajl_gen_map_open((static_cast<YAJLParser*>(ctx))->g);
+	(static_cast<YAJLParser*>(ctx))->pushValue(newobject(MapValue, new MapValue()));
 	return 1;
 }
 
-static int parse_end_map(void * ctx) {
-	yajl_gen g = (yajl_gen) ctx;
-	yajl_gen_map_close(g);
-	popValue();
+int YAJLParser::parse_end_map(void * ctx) {
+	//yajl_gen g = (yajl_gen) ctx;
+	yajl_gen_map_close((static_cast<YAJLParser*>(ctx))->g);
+	(static_cast<YAJLParser*>(ctx))->popValue();
 	return 1;
 }
 
-static int parse_start_array(void * ctx) {
-	yajl_gen g = (yajl_gen) ctx;
-	yajl_gen_array_open(g);
-	pushValue(newobject(ArrayValue, new ArrayValue()));
+int YAJLParser::parse_start_array(void * ctx) {
+	//yajl_gen g = (yajl_gen) ctx;
+	yajl_gen_array_open((static_cast<YAJLParser*>(ctx))->g);
+	(static_cast<YAJLParser*>(ctx))->pushValue(newobject(ArrayValue, new ArrayValue()));
 	return 1;
 }
 
-static int parse_end_array(void * ctx) {
-	yajl_gen g = (yajl_gen) ctx;
-	yajl_gen_array_close(g);
-	popValue();
+int YAJLParser::parse_end_array(void * ctx) {
+	//yajl_gen g = (yajl_gen) ctx;
+	yajl_gen_array_close((static_cast<YAJLParser*>(ctx))->g);
+	(static_cast<YAJLParser*>(ctx))->popValue();
 	return 1;
 }
 
-static yajl_callbacks callbacks = { parse_null, parse_boolean, NULL, NULL,
-		parse_number, parse_string, parse_start_map, parse_map_key,
-		parse_end_map, parse_start_array, parse_end_array };
-
-void parseError(yajl_handle hand, int verbose, const unsigned char* jsonText,
+void YAJLParser::parseError(yajl_handle hand, int verbose, const unsigned char* jsonText,
 		size_t jsonTextLength) {
 	unsigned char * str = yajl_get_error(hand, 1, jsonText, jsonTextLength);
 	yajl_free_error(hand, str);
 }
 
-void gen_print(void *ctx, const char *str, unsigned int len) {
+void YAJLParser::gen_print(void *ctx, const char *str, unsigned int len) {
 	printf("%.*s", len, str);
 }
 
-Value* parse(const unsigned char* jsonText, size_t jsonTextLength) {
+Value* YAJLParser::parse(const unsigned char* jsonText, size_t jsonTextLength) {
 	//qDebug("parsing %s", jsonText);
 	yajl_handle hand;
 	yajl_gen_config conf = { 1, "  " };
-	yajl_gen g;
 	yajl_status stat;
 	yajl_parser_config cfg = { 1, 1 };
 
@@ -469,7 +452,12 @@ Value* parse(const unsigned char* jsonText, size_t jsonTextLength) {
 	g = yajl_gen_alloc(&conf, NULL);
 	//g = yajl_gen_alloc2(gen_print, &conf, NULL, NULL);
 
-	hand = yajl_alloc(&callbacks, &cfg, NULL, (void *) g);
+	yajl_callbacks callbacks = { YAJLParser::parse_null, YAJLParser::parse_boolean, NULL, NULL,
+			YAJLParser::parse_number, YAJLParser::parse_string, YAJLParser::parse_start_map, YAJLParser::parse_map_key,
+			YAJLParser::parse_end_map, YAJLParser::parse_start_array, YAJLParser::parse_end_array };
+
+	//hand = yajl_alloc(&callbacks, &cfg, NULL, (void *) g);
+	hand = yajl_alloc(&callbacks, &cfg, NULL, this);
 
 	sValueStack.clear();
 	sKeyStack.clear();

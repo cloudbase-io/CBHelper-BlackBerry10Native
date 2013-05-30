@@ -69,10 +69,10 @@ void CBHelper::registerDevice() {
 	url += "/" + this->appCode;
 	url += "/register";
 
-	CBRegisterDeviceResponder* resp = new CBRegisterDeviceResponder(this);
+	//registerResponder = new CBRegisterDeviceResponder(this);
 	con->url = url;
 	con->parameters = dynamic_cast<CBSerializable*>(params);
-	con->CBResponder = resp;
+	con->CBResponder = this;
 	con->start();
 	//con->sendRequest(url, dynamic_cast<CBSerializable*>(params), resp);
 	this->deviceRegistered = true;
@@ -345,9 +345,8 @@ void CBHelper::handleRequestCompleted(CBHelperResponseInfo resp, CBHelperRespond
 	}
 }
 
-CBRegisterDeviceResponder::CBRegisterDeviceResponder(CBHelper* helperInstance) { this->helper = helperInstance; }
-void CBRegisterDeviceResponder::parseResponse(CBHelperResponseInfo resp) {
-	this->helper->sessionId = resp.parsedMessage->getValueForKey("sessionid")->toString();
+void CBHelper::parseResponse(CBHelperResponseInfo resp) {
+	this->sessionId = resp.parsedMessage->getValueForKey("sessionid")->toString();
 }
 
 }

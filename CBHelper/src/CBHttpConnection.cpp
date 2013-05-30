@@ -191,37 +191,54 @@ size_t CBHttpConnection::writeFileData(void *ptr, size_t size, size_t nmemb)
 
 void CBHttpConnection::parseResponseOutput(int statusCode, std::string function) {
 	CBHelperResponseInfo resp;
-
+	//qDebug() << "parseResponse";
 	resp.httpStatusCode = statusCode;
 	resp.function = function;
-
-	if (this->isDownload) {
-		resp.downloadedFileName = this->downloadedFilePath;
-	} else {
-		resp.outputString = this->responseOutputString;
-
-		if (this->debugMode)
-			qDebug("received: %s", this->responseOutputString.c_str());
-
-		YAJLDom::Value* root = YAJLDom::parse(
-				(const unsigned char*)responseOutputString.c_str(),
-				responseOutputString.length());
-
-		if (NULL == root || YAJLDom::Value::NUL == root->getType()) {
-			resp.errorMessage = "Error while parsing JSON response";
+	try {
+		if (this->isDownload) {
+			resp.downloadedFileName = this->downloadedFilePath;
 		} else {
-			YAJLDom::Value* functionData = root->getValueForKey(function);
-			if (YAJLDom::Value::MAP != functionData->getType()) {
-				resp.errorMessage = "Could not find function data in response";
-			} else {
-				resp.postSuccess = (functionData->getValueForKey("status")->toString() == "OK");
-				resp.errorMessage = functionData->getValueForKey("error")->toString();
-				resp.parsedMessage = functionData->getValueForKey("message");
-			}
-		}
-	}
+			resp.outputString = this->responseOutputString;
+			//qDebug() << "set output string";
+			if (this->debugMode)
+				qDebug("received: %s", resp.outputString.c_str());
 
-	emit requestCompleted(resp, this->CBResponder);
+			/*
+			YAJLDom::Value* root = YAJLDom::parse(
+					(const unsigned char*)resp.outputString.c_str(),
+					resp.outputString.length());
+			//qDebug() << "parsed";
+			 *
+			 */
+			YAJLDom::YAJLParser* parser = new YAJLDom::YAJLParser();
+			YAJLDom::Value* root = parser->parse((const unsigned char*)resp.outputString.c_str(),
+					resp.outputString.length());
+
+			if (NULL == root || YAJLDom::Value::NUL == root->getType()) {
+				//qDebug() << "root null";
+				resp.errorMessage = "Error while parsing JSON response";
+			} else {
+				YAJLDom::Value* functionData = root->getValueForKey(function);
+				//qDebug() << " function data";
+				if (YAJLDom::Value::MAP != functionData->getType()) {
+					resp.errorMessage = "Could not find function data in response";
+				} else {
+					//qDebug() << " 1";
+					resp.postSuccess = (functionData->getValueForKey("status")->toString() == "OK");
+					//qDebug() << " 2";
+					resp.errorMessage = functionData->getValueForKey("error")->toString();
+					//qDebug() << " 3";
+					resp.parsedMessage = functionData->getValueForKey("message");
+					//qDebug() << " 4";
+				}
+			}
+
+		}
+
+		emit requestCompleted(resp, this->CBResponder);
+	} catch (const std::exception& e) {
+		qDebug() << e.what();
+	}
 }
 
 }
