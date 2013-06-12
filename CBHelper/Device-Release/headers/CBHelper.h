@@ -68,6 +68,11 @@ public:
 	bool isHttps;
 	QtMobilitySubset::QGeoPositionInfo* currentLocation; /// The current location information
 	std::string sessionId;
+	/**
+	 * The cloudbase.io API domain. By default set to api.cloudbase.io - should be changed if running on a private
+	 * cloud instance
+	 */
+	std::string domain;
 
 	/**
 	* Initializes the new cloudbase.io CBHelper object for the given application
@@ -253,7 +258,6 @@ protected:
 	std::string appUniq;
 	std::string password;
 
-	std::string domain;
 	std::string defaultLogCategory;
 
 	std::string country;
