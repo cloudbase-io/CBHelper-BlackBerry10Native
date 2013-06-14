@@ -77,11 +77,6 @@
        <platformArchitecture>armle-v7</platformArchitecture>
        <asset path="arm/o.le-v7/CBHelperDemo.a" entry="true" type="Qnx/Elf">CBHelperDemo.a</asset>
     </configuration>
-    <configuration name="Device-Profile">
-       <platformArchitecture>armle-v7</platformArchitecture>
-       <asset path="arm-p/o.le-v7-g/CBHelperDemo" entry="true" type="Qnx/Elf">CBHelperDemo</asset>
-       <asset path="${workspace_loc:/CBHelper/Device-Release/libCBHelper.so}" type="Qnx/Elf">lib/libCBHelper.so</asset>
-    </configuration>
     <configuration name="Simulator-Debug">
        <platformArchitecture>x86</platformArchitecture>
        <asset path="x86/o-g/CBHelperDemo" entry="true" type="Qnx/Elf">CBHelperDemo</asset>
