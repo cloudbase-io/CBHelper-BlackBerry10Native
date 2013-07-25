@@ -3,49 +3,13 @@ BASEDIR =  $$quote($$_PRO_FILE_PWD_)
 
 device {
     CONFIG(debug, debug|release) {
-        INCLUDEPATH +=  $$quote($$BASEDIR/../CBHelper/src/GeoDataStream) \
-                 $$quote(${QNX_TARGET}/usr/include/bb/device) \
-                 $$quote($$BASEDIR/../CBHelper/public) \
-                 $$quote($$BASEDIR/../CBHelper) \
-                 $$quote(${QNX_TARGET}/usr/include/qt4/QtGui) \
-                 $$quote($$BASEDIR/../CBHelper/src/DataCommands) \
-                 $$quote($$BASEDIR/../CBHelper/src) \
-                 $$quote($$BASEDIR/../CBHelper/src/yajl) \
-                 $$quote(${QNX_TARGET}/usr/include/bb/communications/push) \
-                 $$quote(${QNX_TARGET}/usr/include/qt4/QtConnectivity) \
-                 $$quote($$BASEDIR/../CBHelper/src/yajl/api) \
-                 $$quote(${QNX_TARGET}/usr/include/bb/cascades/pickers) \
-                 $$quote(${QNX_TARGET}/usr/include/qt4/QtCore)
+        SOURCES +=  $$quote($$BASEDIR/src/CBHelperDemo.cpp) \
+                 $$quote($$BASEDIR/src/main.cpp)
 
-        DEPENDPATH +=  $$quote($$BASEDIR/../CBHelper/src/GeoDataStream) \
-                 $$quote(${QNX_TARGET}/usr/include/bb/device) \
-                 $$quote($$BASEDIR/../CBHelper/public) \
-                 $$quote($$BASEDIR/../CBHelper) \
-                 $$quote(${QNX_TARGET}/usr/include/qt4/QtGui) \
-                 $$quote($$BASEDIR/../CBHelper/src/DataCommands) \
-                 $$quote($$BASEDIR/../CBHelper/src) \
-                 $$quote($$BASEDIR/../CBHelper/src/yajl) \
-                 $$quote(${QNX_TARGET}/usr/include/bb/communications/push) \
-                 $$quote(${QNX_TARGET}/usr/include/qt4/QtConnectivity) \
-                 $$quote($$BASEDIR/../CBHelper/src/yajl/api) \
-                 $$quote(${QNX_TARGET}/usr/include/bb/cascades/pickers) \
-                 $$quote(${QNX_TARGET}/usr/include/qt4/QtCore)
+        HEADERS +=  $$quote($$BASEDIR/src/CBHelperDemo.hpp)
+    }
 
-        LIBS += -lCBHelper \
-                -lbbdevice \
-                -lQtCore \
-                -lQtGui \
-                -lgeo_search \
-                -lPushService \
-                -lbbcascadespickers \
-                -lQtConnectivity
-
-        LIBS +=  $$quote(-L$$BASEDIR/../CBHelper/Device-Debug) \
-                 $$quote(-L$$BASEDIR/../CBHelper/Device-Release)
-
-        PRE_TARGETDEPS +=  $$quote($$BASEDIR/../CBHelper/Device-Debug) \
-                 $$quote($$BASEDIR/../CBHelper/Device-Release)
-
+    CONFIG(release, debug|release) {
         SOURCES +=  $$quote($$BASEDIR/src/CBHelperDemo.cpp) \
                  $$quote($$BASEDIR/src/main.cpp)
 
@@ -55,47 +19,6 @@ device {
 
 simulator {
     CONFIG(debug, debug|release) {
-        INCLUDEPATH +=  $$quote($$BASEDIR/../CBHelper/src/GeoDataStream) \
-                 $$quote(${QNX_TARGET}/usr/include/bb/device) \
-                 $$quote($$BASEDIR/../CBHelper/public) \
-                 $$quote($$BASEDIR/../CBHelper) \
-                 $$quote(${QNX_TARGET}/usr/include/qt4/QtGui) \
-                 $$quote($$BASEDIR/../CBHelper/src/DataCommands) \
-                 $$quote($$BASEDIR/../CBHelper/src) \
-                 $$quote($$BASEDIR/../CBHelper/src/yajl) \
-                 $$quote(${QNX_TARGET}/usr/include/bb/communications/push) \
-                 $$quote(${QNX_TARGET}/usr/include/qt4/QtConnectivity) \
-                 $$quote($$BASEDIR/../CBHelper/src/yajl/api) \
-                 $$quote(${QNX_TARGET}/usr/include/bb/cascades/pickers) \
-                 $$quote(${QNX_TARGET}/usr/include/qt4/QtCore)
-
-        DEPENDPATH +=  $$quote($$BASEDIR/../CBHelper/src/GeoDataStream) \
-                 $$quote(${QNX_TARGET}/usr/include/bb/device) \
-                 $$quote($$BASEDIR/../CBHelper/public) \
-                 $$quote($$BASEDIR/../CBHelper) \
-                 $$quote(${QNX_TARGET}/usr/include/qt4/QtGui) \
-                 $$quote($$BASEDIR/../CBHelper/src/DataCommands) \
-                 $$quote($$BASEDIR/../CBHelper/src) \
-                 $$quote($$BASEDIR/../CBHelper/src/yajl) \
-                 $$quote(${QNX_TARGET}/usr/include/bb/communications/push) \
-                 $$quote(${QNX_TARGET}/usr/include/qt4/QtConnectivity) \
-                 $$quote($$BASEDIR/../CBHelper/src/yajl/api) \
-                 $$quote(${QNX_TARGET}/usr/include/bb/cascades/pickers) \
-                 $$quote(${QNX_TARGET}/usr/include/qt4/QtCore)
-
-        LIBS += -lCBHelper \
-                -lbbdevice \
-                -lQtCore \
-                -lQtGui \
-                -lgeo_search \
-                -lPushService \
-                -lbbcascadespickers \
-                -lQtConnectivity
-
-        LIBS +=  $$quote(-L$$BASEDIR/../CBHelper/Simulator-Debug)
-
-        PRE_TARGETDEPS +=  $$quote($$BASEDIR/../CBHelper/Simulator-Debug)
-
         SOURCES +=  $$quote($$BASEDIR/src/CBHelperDemo.cpp) \
                  $$quote($$BASEDIR/src/main.cpp)
 

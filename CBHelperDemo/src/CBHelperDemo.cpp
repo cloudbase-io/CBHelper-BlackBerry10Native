@@ -189,7 +189,8 @@ Q_INVOKABLE void CBHelperDemo::payPalButtonClicked() {
 }
 
 Q_INVOKABLE void CBHelperDemo::subscribePush() {
-	helper->subscribeDeviceWithToken("", "test-bb10", this);
+	//helper->subscribeDeviceWithToken("", "test-bb10", this);
+	helper->subscribeDeviceWithToken("test-bb10", this);
 }
 Q_INVOKABLE void CBHelperDemo::sendPush() {
 	helper->sendNotification("test-bb10", "this is a test notification message", this);

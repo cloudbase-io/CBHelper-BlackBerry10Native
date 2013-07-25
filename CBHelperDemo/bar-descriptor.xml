@@ -82,6 +82,10 @@
        <asset path="x86/o-g/CBHelperDemo" entry="true" type="Qnx/Elf">CBHelperDemo</asset>
        <asset path="${workspace_loc:/CBHelper/Simulator-Debug/libCBHelper.a}" type="Qnx/Elf">lib/libCBHelper.a</asset>
     </configuration>
+    <configuration name="Device-Profile">
+       <platformArchitecture>armle-v7</platformArchitecture>
+       <asset path="arm/o.le-v7/CBHelperDemo" entry="true" type="Qnx/Elf">CBHelperDemo</asset>
+    </configuration>
     
     <!--  The icon for the application, which should be 86x86. -->
 
