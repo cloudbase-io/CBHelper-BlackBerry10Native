@@ -72,6 +72,8 @@ public:
 	 */
 	std::string domain;
 
+	bool isBesApp;
+
 	/**
 	* Initializes the new cloudbase.io CBHelper object for the given application
 	* @param appCode the application code as registered on cloudbase.io (for example test-application)
@@ -137,6 +139,16 @@ public:
 	 * @param reponder The CBHelperResponder object to handle the response from the cloudbase.io servers
 	 */
 	void insertDocument(std::string collectionName, CBSerializable* data, std::vector<CBHelperAttachment> atts = NULL, CBHelperResponder* responder = NULL);
+
+	/**
+	 * Updates an document in the cloud database. It replaces the existing document with the one sent.
+	 * Once the call to the APIs is completed the responder is called
+	 * @param collectionName The name of the collection (table) in your cloudbase database.
+	 * @param data The object to be updated in the collection
+	 * @param conditions A set of search conditions to identify which objects to update
+	 * @param reponder The CBHelperResponder object to handle the response from the cloudbase.io servers
+	 */
+	void updateDocument(std::string collectionName, CBSerializable* data, CBHelperSearchCondition* conditions, CBHelperResponder* responder = NULL);
 
 	/***
 	 * Runs a search over a collection with the given criteria. The documents matching the search criteria are then

@@ -35,6 +35,7 @@ void CBHelper::baseInit() {
 	this->authPassword			= "";
 
 	this->sessionId				= "";
+	this->isBesApp				= false;
 
 	char *language;
 	char *country;
@@ -134,6 +135,23 @@ void CBHelper::insertDocument(std::string collectionName, CBSerializable* data, 
 	con->CBResponder = responder;
 	con->start();
 }
+void CBHelper::updateDocument(std::string collectionName, CBSerializable* data, CBHelperSearchCondition* conditions, CBHelperResponder* responder) {
+	CBHttpConnection* con = this->createConnection("data");
+
+	std::string url = this->generateURL();
+	url += "/" + this->appCode;
+	url += "/" + collectionName;
+	url += "/update";
+
+	std::map<std::string, std::string> params;
+	params.insert(std::make_pair("cb_search_key", conditions->serialize(conditions, true)));
+
+	con->additionalPostParams = params;
+	con->url = url;
+	con->parameters = dynamic_cast<CBSerializable*>(data);
+	con->CBResponder = responder;
+	con->start();
+}
 void CBHelper::searchDocument(std::string collectionName, CBHelperSearchCondition* conditions, CBHelperResponder* responder) {
 	CBHttpConnection* con = this->createConnection("data");
 
@@ -178,7 +196,8 @@ void CBHelper::downloadFile(std::string fileId, CBHelperResponder* responder) {
 
 void CBHelper::subscribeDeviceWithToken(std::string channel, CBHelperResponder* responder) {
 	CBHttpConnection* con = this->createConnection("notifications-register");
-	std::string network = "bb";
+
+	std::string network = (this->isBesApp?"bes":"bb");
 	CBPushNotification* notif = new CBPushNotification("subscribe", devicePin, channel, network);
 
 	std::string url = this->generateURL();
