@@ -101,6 +101,7 @@ void CBHelperSearchCondition::baseInit() {
 	this->limit = -1;
 	this->offset = -1;
 	this->commandType = CBDataAggregationMatch;
+	this->contidionLink_ = CBConditionLinkAnd;
 }
 
 void CBHelperSearchCondition::addSortField(std::string fieldName, CBSortDirection dir) {
@@ -156,15 +157,19 @@ std::string CBHelperSearchCondition::serialize(CBHelperSearchCondition* cond, bo
 				CBHelperSearchCondition* curGroup = cond->conditions_[i];
 				if (prevLink != -1 && prevLink != curGroup->contidionLink_) {
 					std::string linkStr = cond->CBConditionLink_ToString[prevLink];
-					output += "\"" + linkStr + "\" : " + curCond + ", ";
+					output += "\"" + linkStr + "\" :  " + curCond + ", ";
 					curCond = "";
 				}
-				curCond = curGroup->serialize(curGroup, false);
+				std::string tmpCond = curGroup->serialize(curGroup, false);
+				curCond += tmpCond;
+				if ( i < cond->conditions_.size() - 1 ) {
+					curCond += ", ";
+				}
 				prevLink = curGroup->contidionLink_;
-				if (i == (int)cond->conditions_.size() - 1) {
+				if ( i == (cond->conditions_.size() -1 ) ) {
 				    //[output setValue:curObject forKey:CBConditionLink_Tostd::string[prevLink]];
 					std::string linkStr = cond->CBConditionLink_ToString[prevLink];
-					output += "\"" + linkStr + "\" : " + curCond;
+					output += "\"" + linkStr + "\" : [ " + curCond + " ]";
 				}
 			}
 		}
